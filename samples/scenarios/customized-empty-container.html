@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>appGED - Capturar Documento | Recipiente Vázio</title>
+    <script src="../../dist/mwc.bundle.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script type="module">
+      // Initialize a Mobile Web Capture Object
+      const mobileWebCapture = new Dynamsoft.MobileWebCapture({
+        license: "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAzNzczMjYzLVRYbFhaV0pRY205cSIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbSIsIm9yZ2FuaXphdGlvbklEIjoiMTAzNzczMjYzIiwic3RhbmRieVNlcnZlclVSTCI6Imh0dHBzOi8vc2Rscy5keW5hbXNvZnRvbmxpbmUuY29tIiwiY2hlY2tDb2RlIjotMzU0MDk1MjR9",
+        showLibraryView: true,
+        libraryViewConfig: {
+          emptyContentConfig: {
+            templatePath: "../demo/assets/emptyContentTemplate.html",
+          },
+        },
+      });
+      // Launch
+      (async () => await mobileWebCapture.launch())();
+    </script>
+  </body>
+</html>
