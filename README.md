@@ -1,225 +1,229 @@
-# Scan Multi-Page Documents with Mobile Web Capture
+# Digitalizar Documentos de Várias Páginas com AppGED - Indoor
 
-**Mobile Web Capture (MWC)** is an SDK designed for scanning multi-page documents.  It integrates **Dynamsoft Document Scanner (DDS)** functionality  while offering additional features such as multi-document management, annotation, and uploading, making it a comprehensive solution for managing complex document workflows.
+**AppGED - Indoor** é um SDK projetado para digitalizar documentos de várias páginas. Ele integra a funcionalidade do **Dynamsoft Document Scanner (DDS)** enquanto oferece recursos adicionais, como gerenciamento de múltiplos documentos, anotações e upload, tornando-o uma solução abrangente para gerenciar fluxos de trabalho complexos de documentos.
 
-> See it in action with the [Mobile Web Capture Demo](https://demo.dynamsoft.com/mobile-web-capture/).
+> Veja em ação com a [Demonstração do AppGED - Indoor](https://pecsolucoes.appged/).
 
-This guide walks you through building a web application that scans multi-page documents using **MWC**, with **pre-defined configurations**.
+Este guia orienta você na construção de uma aplicação web que digitaliza documentos de várias páginas usando o **AppGED - Indoor**, com **configurações predefinidas**.
 
-> If you are looking for a solution that scans single-page documents, please read [Dynamsoft Document Scanner User Guide](https://www.dynamsoft.com/mobile-web-capture/docs/guides/document-scanner.html) instead.
+> Se você está procurando uma solução para digitalizar documentos de página única, leia o [Guia do Usuário do Dynamsoft Document Scanner](https://www.dynamsoft.com/mobile-web-capture/docs/guides/document-scanner.html) em vez disso.
 
-**Table of Contents**
-- [License](#license)
-  - [Get a Trial License](#get-a-trial-license)
-  - [Get a Full License](#get-a-full-license)
-- [Quick Start](#quick-start)
-  - [Option 1: Build from Source](#option-1-build-from-source)
-  - [Option 2: Use Precompiled Script](#option-2-use-precompiled-script)
-- [Hello World Sample Explained](#hello-world-sample-explained)
-  - [Reference MWC](#reference-mwc)
-  - [Instantiate MWC](#instantiate-mwc)
-  - [Launch MWC](#launch-mwc)
-- [Next Step](#next-step)
+**Índice**
+- [Licença](#licença)
+  - [Obter uma Licença de Avaliação](#obter-uma-licença-de-avaliação)
+  - [Obter uma Licença Completa](#obter-uma-licença-completa)
+- [Início Rápido](#início-rápido)
+  - [Opção 1: Compilar a Partir do Código-Fonte](#opção-1-compilar-a-partir-do-código-fonte)
+  - [Opção 2: Usar Script Pré-compilado](#opção-2-usar-script-pré-compilado)
+- [Explicação do Exemplo Hello World](#explicação-do-exemplo-hello-world)
+  - [Referenciar o AppGED - Indoor](#referenciar-o-appged---indoor)
+  - [Instanciar o AppGED - Indoor](#instanciar-o-appged---indoor)
+  - [Iniciar o AppGED - Indoor](#iniciar-o-appged---indoor)
+- [Próximo Passo](#próximo-passo)
 
-## License
+## Licença
 
-### Get a Trial License
+### Obter uma Licença de Avaliação
 
-If you haven't requested a **DDS** trial, you can try **MWC** by requesting a trial license through our [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?product=mwc&source=guide). The trial can be renewed twice for up to two months of free access.
+Se você ainda não solicitou uma avaliação do **DDS**, pode experimentar o **AppGED - Indoor** solicitando uma licença de avaliação através do nosso [portal do cliente](https://www.dynamsoft.com/customer/license/trialLicense?product=mwc&source=guide). A avaliação pode ser renovada duas vezes, oferecendo até dois meses de acesso gratuito.
 
-> **DDS** and **MWC** share the same license keys. If you already have a **DDS** license, you can use it for **MWC**, and vice versa.
+> O **DDS** e o **AppGED - Indoor** compartilham as mesmas chaves de licença. Se você já possui uma licença do **DDS**, pode usá-la para o **AppGED - Indoor**, e vice-versa.
 
-### Get a Full License
+### Obter uma Licença Completa
 
-To purchase a full license, [contact us](https://www.dynamsoft.com/company/contact/).
+Para adquirir uma licença completa, [entre em contato conosco](https://www.dynamsoft.com/company/contact/).
 
-## Quick Start
+## Início Rápido
 
-To use **MWC**, the first step is to obtain its **library files**. You can acquire them from one of the following sources:
+Para usar o **AppGED - Indoor**, o primeiro passo é obter os **arquivos da biblioteca**. Você pode adquiri-los de uma das seguintes fontes:
 
-1. [**GitHub**](https://github.com/Dynamsoft/mobile-web-capture) – Contains the source files for the **MWC** SDK, which can be compiled into library files.
-2. [**npm**](https://www.npmjs.com/package/dynamsoft-mobile-web-capture) – Provides precompiled library files via **npm** for easier installation.
-3. [**CDN**](https://cdn.jsdelivr.net/npm/dynamsoft-mobile-web-capture) – Delivers precompiled library files through a **CDN** for quick and seamless integration.
+1. [**GitHub**](https://github.com/Dynamsoft/mobile-web-capture) – Contém os arquivos de origem do SDK do **AppGED - Indoor**, que podem ser compilados em arquivos de biblioteca.
+2. [**npm**](https://www.npmjs.com/package/dynamsoft-mobile-web-capture) – Fornece arquivos de biblioteca pré-compilados via **npm** para uma instalação mais fácil.
+3. [**CDN**](https://cdn.jsdelivr.net/npm/dynamsoft-mobile-web-capture) – Disponibiliza arquivos de biblioteca pré-compilados através de um **CDN** para uma integração rápida e sem complicações.
 
-You can choose one of the following methods to set up a **Hello World** page:
+Você pode escolher um dos seguintes métodos para configurar uma página **Hello World**:
 
-1. **Build from Source** – Download the source files from **GitHub** and compile the resource script yourself.
-2. **Using Precompiled Script** – Use the precompiled resource scripts from **npm** or the **CDN** for a quicker setup.
+1. **Compilar a Partir do Código-Fonte** – Baixe os arquivos de origem do **GitHub** e compile o script de recursos você mesmo.
+2. **Usar Script Pré-compilado** – Utilize os scripts de recursos pré-compilados do **npm** ou do **CDN** para uma configuração mais rápida.
 
-### Option 1: Build from Source
+### Opção 1: Compilar a Partir do Código-Fonte
 
-This method retrieves all **MWC source files** from its [GitHub Repository](https://github.com/Dynamsoft/mobile-web-capture), compiles them into a distributable package, and then runs a *ready-made* **Hello World** sample page included in the repository.
+Esse método obtém todos os **arquivos de origem do AppGED - Indoor** a partir de seu [Repositório no GitHub](https://github.com/Dynamsoft/mobile-web-capture), compila-os em um pacote distribuível e, em seguida, executa uma página de exemplo **Hello World** pronta incluída no repositório.
 
-Follow these steps:
+Siga estes passos:
 
-1. **Download** **MWC** from [GitHub](https://github.com/Dynamsoft/mobile-web-capture) as a compressed folder.
-   > Alternatively, you can [download the same file from Dynamsoft WebSite](https://www.dynamsoft.com/mobile-web-capture/downloads/).
-2. **Extract** the contents of the archive.
-3. **Open** the root directory in a code editor.
-   > We recommend using [VS Code](https://code.visualstudio.com) to follow along with this guide, though any code editor will work.
-4. **Enter** the license key you received in [Get a Trial License](#get-a-trial-license).
-   > Open the Hello World sample located at [`/samples/hello-world.html`](https://github.com/Dynamsoft/mobile-web-capture/blob/main/samples/hello-world.html). Search for `"YOUR_LICENSE_KEY_HERE"` and replace it with your actual license key.
-5. **Install** project dependencies
-    In the terminal, navigate to the project root directory and run:
+1. **Baixe** o **AppGED - Indoor** do [GitHub](https://github.com/Dynamsoft/mobile-web-capture) como uma pasta compactada.
+   > Alternativamente, você pode [baixar o mesmo arquivo no site da Dynamsoft](https://www.dynamsoft.com/mobile-web-capture/downloads/).
+2. **Extraia** o conteúdo do arquivo compactado.
+3. **Abra** o diretório raiz em um editor de código.
+   > Recomendamos usar o [VS Code](https://code.visualstudio.com) para acompanhar este guia, embora qualquer editor de código funcione.
+4. **Insira** a chave de licença recebida em [Obter uma Licença de Avaliação](#obter-uma-licença-de-avaliação).
+   > Abra o exemplo Hello World localizado em [`/samples/hello-world.html`](https://github.com/Dynamsoft/mobile-web-capture/blob/main/samples/hello-world.html). Procure por `"YOUR_LICENSE_KEY_HERE"` e substitua pela sua chave de licença real.
+5. **Instale** as dependências do projeto
+    No terminal, navegue até o diretório raiz do projeto e execute:
     ```bash
     npm install
     ```
-6. **Build** the project
-    After the dependencies are installed, build the project by running:
+6. **Compile** o projeto
+    Após a instalação das dependências, compile o projeto executando:
     ```bash
     npm run build
     ```
-7. **Serve** the project locally
-    Start the local server by running:
+7. **Sirva** o projeto localmente
+    Inicie o servidor local executando:
     ```bash
     npm run serve
     ```
-Once the server is running, open the application in a browser using the address provided in the terminal output after running `npm run serve`.
-> See the server configuration details in [`/dev-server/index.js`](https://github.com/Dynamsoft/mobile-web-capture/blob/main/dev-server/index.js).
+Quando o servidor estiver em execução, abra a aplicação em um navegador usando o endereço fornecido na saída do terminal após executar `npm run serve`.
+> Veja os detalhes da configuração do servidor em [`/dev-server/index.js`](https://github.com/Dynamsoft/mobile-web-capture/blob/main/dev-server/index.js).
 
-### Option 2: Use Precompiled Script
+### Opção 2: Usar Script Pré-compilado
 
-Since the **MWC library files** are published on [**npm**](https://www.npmjs.com/package/dynamsoft-mobile-web-capture), it's easy to reference them from a CDN.
+Como os **arquivos da biblioteca do AppGED - Indoor** estão publicados no [**npm**](https://www.npmjs.com/package/dynamsoft-mobile-web-capture), é fácil referenciá-los a partir de um CDN.
 
-To use the precompiled script, simply include the following URL in a `<script>` tag:
+Para usar o script pré-compilado, simplesmente inclua a seguinte URL em uma tag `<script>`:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/dynamsoft-mobile-web-capture@3.0.1/dist/mwc.bundle.js"></script>
 ```
 
-Below is the complete **Hello World** sample page that uses this precompiled script from a CDN.
-> This code is identical to the [`/samples/hello-world.html`](https://github.com/Dynamsoft/mobile-web-capture/blob/main/samples/hello-world.html) file mentioned in the [Build from Source](#option-1-build-from-source) section, except for the script source.
+Abaixo está a página de exemplo **Hello World** completa que usa esse script pré-compilado de um CDN.
+> Este código é idêntico ao arquivo [`/samples/hello-world.html`](https://github.com/Dynamsoft/mobile-web-capture/blob/main/samples/hello-world.html) mencionado na seção [Compilar a Partir do Código-Fonte](#opção-1-compilar-a-partir-do-código-fonte), exceto pela fonte do script.
 >
-> **Don't forget** to replace `"YOUR_LICENSE_KEY_HERE"` with your actual license key.
+> **Não se esqueça** de substituir `"YOUR_LICENSE_KEY_HERE"` pela sua chave de licença real.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mobile Web Capture - Hello World</title>
+    <title>AppGED - Indoor - Hello World</title>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-mobile-web-capture@3.0.1/dist/mwc.bundle.js"></script>
   </head>
   <body>
     <script>
-      // Instantiate a Mobile Web Capture Object
-      const mobileWebCapture = new Dynamsoft.MobileWebCapture({
-        license: "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAzNzczMjYzLVRYbFhaV0pRY205cSIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbSIsIm9yZ2FuaXphdGlvbklEIjoiMTAzNzczMjYzIiwic3RhbmRieVNlcnZlclVSTCI6Imh0dHBzOi8vc2Rscy5keW5hbXNvZnRvbmxpbmUuY29tIiwiY2hlY2tDb2RlIjotMzU0MDk1MjR9", // Replace this with your actual license key
+      // Instanciar um Objeto AppGED - Indoor
+      const appGEDIndoor = new Dynamsoft.MobileWebCapture({
+        license: "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAzNzczMjYzLVRYbFhaV0pRY205cSIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbSIsIm9yZ2FuaXphdGlvbklEIjoiMTAzNzczMjYzIiwic3RhbmRieVNlcnZlclVSTCI6Imh0dHBzOi8vc2Rscy5keW5hbXNvZnRvbmxpbmUuY29tIiwiY2hlY2tDb2RlIjotMzU0MDk1MjR9", // Substitua isso pela sua chave de licença real
       });
       (async () => {
-        // Launch the Mobile Web Capture Instance
-        const fileName = `New_Document_${Date.now().toString().slice(-5)}`;
-        await mobileWebCapture.launch(fileName);
+        // Iniciar a Instância do AppGED - Indoor
+        const fileName = `Novo_Documento_${Date.now().toString().slice(-5)}`;
+        await appGEDIndoor.launch(fileName);
       })();
     </script>
   </body>
 </html>
 ```
 
-To run the sample, create a new file called `hello-world.html`, then copy and paste the code above into the file. Next, serve the page directly by deploying it to a server.
+Para executar o exemplo, crie um novo arquivo chamado `hello-world.html`, copie e cole o código acima no arquivo. Em seguida, sirva a página diretamente implantando-a em um servidor.
 
-If you are using VS Code, a quick and easy way to serve the project is using the [**Five Server** VSCode extension](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server). Simply install the extension, open the `hello-world.html` file in the editor, and click "Go Live" in the bottom right corner of the editor. This will serve the application at `http://127.0.0.1:5500/hello-world.html`.
+Se você estiver usando o VS Code, uma maneira rápida e fácil de servir o projeto é usar a extensão [**Five Server** do VSCode](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server). Basta instalar a extensão, abrir o arquivo `hello-world.html` no editor e clicar em "Go Live" no canto inferior direito do editor. Isso servirá a aplicação em `http://127.0.0.1:5500/hello-world.html`.
 
-Alternatively, you can use other methods like `IIS` or `Apache` to serve the project, though we won't cover those here for brevity.
+Alternativamente, você pode usar outros métodos como `IIS` ou `Apache` para servir o projeto, embora não os abordemos aqui por brevidade.
 
-## Hello World Sample Explained
+## Explicação do Exemplo Hello World
 
-Let’s walk through the code in the **Hello World** Sample to understand how it works.
+Vamos analisar o código do exemplo **Hello World** para entender como ele funciona.
 
-> Instead of using the code above, an alternative way to view the full code is by visiting the [Mobile Web Capture Hello World Sample](https://github.com/Dynamsoft/mobile-web-capture/blob/main/samples/hello-world.html).
+> Em vez de usar o código acima, uma maneira alternativa de visualizar o código completo é visitar o [Exemplo Hello World do AppGED - Indoor](https://github.com/Dynamsoft/mobile-web-capture/blob/main/samples/hello-world.html).
 
-### Reference MWC
+### Referenciar o AppGED - Indoor
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mobile Web Capture - Hello World</title>
+    <title>AppGED - Indoor - Hello World</title>
     <script src="../dist/mwc.bundle.js"></script>
-    <!--Alternatively, reference the script from CDN
+    <!--Alternativamente, referencie o script a partir do CDN
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-mobile-web-capture@3.0.1/dist/mwc.bundle.js"></script>
     -->
   </head>
 ```
 
-In this step, **MWC** is referenced using a relative local path in the `<head>` section of the HTML.
+Nesta etapa, o **AppGED - Indoor** é referenciado usando um caminho local relativo na seção `<head>` do HTML.
 
 ```html
 <script src="../dist/mwc.bundle.js"></script>
 ```
 
-Alternatively, the script can be referenced from a CDN:
+Alternativamente, o script pode ser referenciado a partir de um CDN:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/dynamsoft-mobile-web-capture@3.0.1/dist/mwc.bundle.js"></script>
 ```
 
-**MWC** wraps all its dependency scripts, so a **MWC** project only needs to include **MWC** itself as a single script. No additional dependency scripts are required.
+O **AppGED - Indoor** encapsula todos os seus scripts de dependência, então um projeto do **AppGED - Indoor** só precisa incluir o próprio **AppGED - Indoor** como um único script. Não são necessários scripts de dependência adicionais.
 
-> ⚠**IMPORTANT**: Even if you reference the script locally, supporting resources like `.wasm` engine files are **still loaded from the CDN at runtime**. If you require a **fully offline setup**, follow the instructions in [Self-Hosting Resource File](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html#self-hosting-resource-files).
+> ⚠**IMPORTANTE**: Mesmo se você referenciar o script localmente, recursos de suporte como arquivos de motor `.wasm` **ainda são carregados do CDN em tempo de execução**. Se você precisar de uma **configuração totalmente offline**, siga as instruções em [Hospedagem Própria de Arquivos de Recursos](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html#self-hosting-resource-files).
 
-### Instantiate MWC
+### Instanciar o AppGED - Indoor
 
 ```javascript
-// Instantiate a Mobile Web Capture Object
-const mobileWebCapture = new Dynamsoft.MobileWebCapture({
-    license: "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAzNzczMjYzLVRYbFhaV0pRY205cSIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbSIsIm9yZ2FuaXphdGlvbklEIjoiMTAzNzczMjYzIiwic3RhbmRieVNlcnZlclVSTCI6Imh0dHBzOi8vc2Rscy5keW5hbXNvZnRvbmxpbmUuY29tIiwiY2hlY2tDb2RlIjotMzU0MDk1MjR9", // Replace this with your actual license key
+// Instanciar um Objeto AppGED - Indoor
+const appGEDIndoor = new Dynamsoft.MobileWebCapture({
+    license: "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAzNzczMjYzLVRYbFhaV0pRY205cSIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbSIsIm9yZ2FuaXphdGlvbklEIjoiMTAzNzczMjYzIiwic3RhbmRieVNlcnZlclVSTCI6Imh0dHBzOi8vc2Rscy5keW5hbXNvZnRvbmxpbmUuY29tIiwiY2hlY2tDb2RlIjotMzU0MDk1MjR9", // Substitua isso pela sua chave de licença real
 });
 ```
 
-API Reference: [`MobileWebCapture()`](https://www.dynamsoft.com/mobile-web-capture/docs/api/mobile-web-capture.html#mobilewebcapture)
+Referência da API: [`MobileWebCapture()`](https://www.dynamsoft.com/mobile-web-capture/docs/api/mobile-web-capture.html#mobilewebcapture)
 
-This step creates the **MWC** UI, which, when launched, occupies the entire visible area of the browser window by default. If needed, you can specify a container to restrict the UI's size. For more details, refer to [Specify the UI Container](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html#example-1-specify-the-ui-container).
+Esta etapa cria a interface de usuário do **AppGED - Indoor**, que, quando iniciada, ocupa por padrão toda a área visível da janela do navegador. Se necessário, você pode especificar um contêiner para restringir o tamanho da interface de usuário. Para mais detalhes, consulte [Especificar o Contêiner da Interface de Usuário](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html#example-1-specify-the-ui-container).
 
-> A **license key** is required for the instantiation.
+> Uma **chave de licença** é necessária para a instanciação.
 
-### Launch MWC
+### Iniciar o AppGED - Indoor
 
 ```javascript
-const fileName = `New_Document_${Date.now().toString().slice(-5)}`; // Generates a unique filename to use as the initial document name
-await mobileWebCapture.launch(fileName);
+const fileName = `Novo_Documento_${Date.now().toString().slice(-5)}`; // Gera um nome de arquivo único para usar como nome inicial do documento
+await appGEDIndoor.launch(fileName);
 ```
 
-API Reference: [`launch()`](https://www.dynamsoft.com/mobile-web-capture/docs/api/mobile-web-capture.html#launch)
+Referência da API: [`launch()`](https://www.dynamsoft.com/mobile-web-capture/docs/api/mobile-web-capture.html#launch)
 
-This step launches the UI, starting in **`DocumentView`**, where the user can begin building a document in two ways:
-> Note: The `DocumentView` requires a document name, which is passed as a parameter in the `launch()` method.
+Esta etapa inicia a interface de usuário, começando no **`DocumentView`**, onde o usuário pode começar a construir um documento de duas maneiras:
+> Nota: O `DocumentView` requer um nome de documento, que é passado como parâmetro no método `launch()`.
 
-1. **Capture** : Capture image(s) of the document pages.
-2. **Import** : Import one or multiple images or PDF files.
+1. **Capturar**: Capturar imagem(ns) das páginas do documento.
+2. **Importar**: Importar uma ou várias imagens ou arquivos PDF.
 
-Once a document has been created, the user can navigate between three views:
+Após a criação de um documento, o usuário pode navegar entre três visualizações:
 
-#### The DocumentView
-The user can:
+#### A Visualização de Documentos (DocumentView)
+O usuário pode:
 
-1. **Share** : Share the document as a multi-page PDF file.
-  >  **Download** is enabled where **Share** is not supported (e.g., in Firefox).
-2. **Manage** : Select one or multiple pages for further actions.
-3. **Manage** → **Select All** : Select all pages.
-4. **Manage** → **Delete** : Delete selected pages from the document.
-5. **Manage** → **Share** : Share individual pages as images (**.PNG**).
-  >  **Download** is enabled where **Share** is not supported (e.g., in Firefox).
+1. **Compartilhar**: Compartilhar o documento como um arquivo PDF de várias páginas.
+   > O **Download** é habilitado onde o **Compartilhar** não é suportado (por exemplo, no Firefox).
+2. **Gerenciar**: Selecionar uma ou várias páginas para ações adicionais.
+3. **Gerenciar** → **Selecionar Tudo**: Selecionar todas as páginas.
+4. **Gerenciar** → **Excluir**: Excluir as páginas selecionadas do documento.
+5. **Gerenciar** → **Compartilhar**: Compartilhar páginas individuais como imagens (**.PNG**).
+   > O **Download** é habilitado onde o **Compartilhar** não é suportado (por exemplo, no Firefox).
 
-The user can also enable the **"Upload"** feature. Check out [Enable File Upload](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html#enable-file-upload)
+O usuário também pode habilitar o recurso de **"Upload"**. Confira [Habilitar Upload de Arquivos](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html#enable-file-upload).
 
-#### The PageView
-When the user presses an image, the `PageView` is launched for that page, where the user can
+#### A Visualização de Página (PageView)
+Quando o usuário pressiona uma imagem, a `PageView` é iniciada para aquela página, onde o usuário pode:
 
-1. **Delete** : Remove the current page.
-2. **Add Page** : Add more pages to the document.
-1. **Share** : Share the current page as an image (**.PNG**).
-  >  **Download** is enabled where **Share** is not supported (e.g., in Firefox).
-4. **Edit** : Display additional editing features to further process the page.
-5. **Edit** → **Crop** : Select a portion of the page and crop.
-6. **Edit** → **Rotate** : Rotate the page **90 degrees counterclockwise**.
-7. **Edit** → **Filter** : Adjust the page's pixels.
-8. **Edit** → **Annotate** : Add annotations to the page.
+1. **Excluir**: Remover a página atual.
+2. **Adicionar Página**: Adicionar mais páginas ao documento.
+3. **Compartilhar**: Compartilhar a página atual como uma imagem (**.PNG**).
+   > O **Download** é habilitado onde o **Compartilhar** não é suportado (por exemplo, no Firefox).
+4. **Editar**: Exibir recursos de edição adicionais para processar ainda mais a página.
+5. **Editar** → **Cortar**: Selecionar uma parte da página e cortar.
+6. **Editar** → **Girar**: Girar a página **90 graus no sentido anti-horário**.
+7. **Editar** → **Filtrar**: Ajustar os pixels da página.
+8. **Editar** → **Anotar**: Adicionar anotações à página.
 
-The user can also enable the **"Upload"** feature. Check out [Enable File Upload](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html#enable-file-upload)
+O usuário também pode habilitar o recurso de **"Upload"**. Confira [Habilitar Upload de Arquivos](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html#enable-file-upload).
 
-## Next Step
+## Próximo Passo
 
-**MWC** provides extensive customization options. Read on to explore the available customizations in the [MWC Customization Guide](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html).
+O **AppGED - Indoor** oferece amplas opções de personalização. Continue lendo para explorar as personalizações disponíveis no [Guia de Personalização do AppGED - Indoor](https://www.dynamsoft.com/mobile-web-capture/docs/guides/mobile-web-capture-customization.html).
+
+---
+
+Essa tradução mantém a estrutura original do documento e substitui todas as instâncias de "Mobile Web Capture (MWC)" por "AppGED - Indoor". Se precisar de ajustes adicionais ou de outro formato, é só avisar!
